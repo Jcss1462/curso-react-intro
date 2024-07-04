@@ -1,7 +1,9 @@
 function CreateTodoButton() {
     return (
-        <button>Create</button>
+        <div id="buttonContainer">
+            <button><b>Create</b></button>
+        </div>
     );
 }
 
-export  {CreateTodoButton};
+export { CreateTodoButton };

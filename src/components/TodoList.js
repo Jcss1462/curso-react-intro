@@ -1,9 +1,11 @@
 function TodoList(props) {
     return (
-        <ul>
-            {props.children}
-        </ul>
+        <div id="listContainer">
+            <ul>
+                {props.children}
+            </ul>
+        </div>
     );
 }
 
-export  {TodoList};
+export { TodoList };

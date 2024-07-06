@@ -6,6 +6,7 @@ import { TodoList } from './components/TodoList';
 import { TodoItem } from './components/TodoItem';
 import { CreateTodoButton } from './components/CreateTodoButton';
 import React from 'react';
+import { PopUpComplete } from './components/PopUpComplete';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
     const newTodo = [...toDos];
     newTodo[index].completed = !newTodo[index].completed;
     setTodos(newTodo)
+
   }
 
   const deletTodo = (index) => {
@@ -44,12 +46,14 @@ function App() {
           todo.text.toLowerCase().includes(searchValue.toLowerCase()) ? (<TodoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={() => competeTodo(index)} onDelete={() => deletTodo(index)}></TodoItem>) : ""
         )}
       </TodoList>
-
       <CreateTodoButton></CreateTodoButton>
-
+      
+      <PopUpComplete completedTodos={completedTodos} totalTodos={totalTodos}></PopUpComplete>
     </div>
   );
 }
+
+
 
 
 

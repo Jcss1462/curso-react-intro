@@ -1,4 +1,3 @@
-import logo from './platzi.webp';
 import './App.css';
 import { TodoCounter } from './components/TodoCounter';
 import { TodoSearch } from './components/TodoSearch';
@@ -16,7 +15,7 @@ function App() {
     { text: "Hacer curso de react", completed: false }
   ]);
 
-  const completedTodos = toDos.filter((prev) => prev.completed == true).length;
+  const completedTodos = toDos.filter((prev) => prev.completed === true).length;
   const totalTodos = toDos.length;
 
   const competeTodo = (index) => {
@@ -28,7 +27,7 @@ function App() {
 
   const deletTodo = (index) => {
     setTodos(toDos.filter((elem, idx) => {
-      return index == idx ? "" : elem;
+      return index === idx ? "" : elem;
     }))
   }
 

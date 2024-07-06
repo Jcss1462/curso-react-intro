@@ -1,0 +1,11 @@
+import { TodoIcon } from "./TodoIcon";
+
+function CompleteIcon({completed,onComplete}) {
+    return <TodoIcon
+        type="check"
+        color={completed?"green":"gray"}
+        onClick={onComplete}
+    ></TodoIcon>;
+}
+
+export { CompleteIcon };

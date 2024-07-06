@@ -1,12 +1,16 @@
+import { CompleteIcon } from "./CompleteIcon";
+import { DeleteIcon } from "./DeleteIcon";
+
+
 function TodoItem({ text, completed, onComplete ,onDelete }) {
-
-
 
     return (
         <li>
-            <span onClick={onComplete}>V</span>
+            <CompleteIcon onComplete={onComplete} completed={completed}></CompleteIcon>
+           
             <p className={`${completed && "--complete"}`}>{text}</p>
-            <span onClick={onDelete}>x</span>
+        
+            <DeleteIcon onDelete={onDelete}></DeleteIcon>
         </li>
     );
 }

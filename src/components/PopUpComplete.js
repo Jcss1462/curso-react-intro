@@ -1,10 +1,10 @@
 function PopUpComplete({completedTodos,totalTodos}) {
         console.log(completedTodos);
     return (
-        <div id="popup" class="popup" style={completedTodos == totalTodos ? { display: "flex" } : { display: "none" }} onClick={()=>{clousePopUp()}}>
-            <div class="popup-content">
+        <div id="popup" className="popup" style={completedTodos === totalTodos ? { display: "flex" } : { display: "none" }} onClick={()=>{clousePopUp()}}>
+            <div className="popup-content">
                 <div className="CloseSection">
-                    <span id="closePopup" class="close" onClick={()=>{clousePopUp()}}>&times;</span>
+                    <span id="closePopup" className="close" onClick={()=>{clousePopUp()}}>&times;</span>
                 </div>
                 <h2>Terminaste todos los Todos</h2>
             </div>

@@ -13,7 +13,9 @@ function AppUI({
     setSearchValue,
     toDos,
     competeTodo,
-    deletTodo
+    deletTodo,
+    loading,
+    error
     }) {
 
     return (
@@ -25,13 +27,16 @@ function AppUI({
             ></TodoSearch>
 
             <TodoList>
+                {loading && <p>Estamos Cargando</p>}
+                {error && <p>Error</p>}
+                {(!loading && totalTodos===0) && <p>!Crea tu primer Todo!</p>}
                 {toDos.map((todo, index) =>
                     todo.text.toLowerCase().includes(searchValue.toLowerCase()) ? (<TodoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={() => competeTodo(index)} onDelete={() => deletTodo(index)}></TodoItem>) : ""
                 )}
             </TodoList>
             <CreateTodoButton></CreateTodoButton>
 
-            <PopUpComplete completedTodos={completedTodos} totalTodos={totalTodos}></PopUpComplete>
+            <PopUpComplete completedTodos={completedTodos} totalTodos={totalTodos} loading={loading}></PopUpComplete>
         </div>
     );
 

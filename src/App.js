@@ -14,40 +14,49 @@ import { PopUpComplete } from './components/PopUpComplete';
 // localStorage.setItem("TODOS_V1",JSON.stringify(defaultTodos));
 // localStorage.removeItem("TODOS_V1");
 
+function useLocalStorage(itemName, initialValue){
+
+  const localStorageItem= localStorage.getItem(itemName);
+  let parseItem;
+
+  if(!localStorageItem){
+    localStorage.setItem(itemName,initialValue);
+    parseItem=initialValue;
+  }else{
+    parseItem=JSON.parse(localStorageItem);
+  }
+
+  const [item, setItem] =React.useState(parseItem);
+
+  const saveItem=(newItem)=>{
+    localStorage.setItem(itemName,JSON.stringify(newItem));
+    setItem(newItem);
+  }
+
+  return [item,saveItem]
+}
 
 function App() {
 
-  const localStorageTodos= localStorage.getItem("TODOS_V1");
-  let parseTodos;
-
-  if(!localStorageTodos){
-    localStorage.setItem("TODOS_V1",[]);
-    parseTodos=[];
-  }else{
-    parseTodos=JSON.parse(localStorageTodos);
-  }
+ 
 
   
-  const [toDos, setTodos] = React.useState(parseTodos);
+  const [toDos, saveItem] = useLocalStorage("TODOS_V1",[]);
   
   const [searchValue, setSearchValue] = React.useState("");
   const completedTodos = toDos.filter((prev) => prev.completed === true).length;
   const totalTodos = toDos.length;
 
-  const saveTodos=(newTodos)=>{
-    localStorage.setItem("TODOS_V1",JSON.stringify(newTodos));
-    setTodos(newTodos);
-  }
-
+  
   const competeTodo = (index) => {
     const newTodo = [...toDos];
     newTodo[index].completed = !newTodo[index].completed;
-    saveTodos(newTodo)
+    saveItem(newTodo)
 
   }
 
   const deletTodo = (index) => {
-    saveTodos(toDos.filter((elem, idx) => {
+    saveItem(toDos.filter((elem, idx) => {
       return index === idx ? "" : elem;
     }))
   }

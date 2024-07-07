@@ -5,6 +5,9 @@ import { TodoList } from '../components/TodoList/TodoList';
 import { TodoItem } from '../components/TodoItem/TodoItem';
 import { CreateTodoButton } from '../components/CreateTodoButton/CreateTodoButton';
 import { PopUpComplete } from '../components/PopUpComplete/PopUpComplete';
+import { TodosLoading } from '../components/TodosLoading/TodosLoading';
+import { TodosError } from '../components/TodosError/TodosError';
+import { EmptyTodos } from '../components/EmptyTodos/EmptyTodos';
 
 function AppUI({
     completedTodos,
@@ -27,9 +30,9 @@ function AppUI({
             ></TodoSearch>
 
             <TodoList>
-                {loading && <p>Estamos Cargando</p>}
-                {error && <p>Error</p>}
-                {(!loading && totalTodos===0) && <p>!Crea tu primer Todo!</p>}
+                {loading && <TodosLoading/>}
+                {error && <TodosError/>}
+                {(!loading && totalTodos===0) && <EmptyTodos/>}
                 {toDos.map((todo, index) =>
                     todo.text.toLowerCase().includes(searchValue.toLowerCase()) ? (<TodoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={() => competeTodo(index)} onDelete={() => deletTodo(index)}></TodoItem>) : ""
                 )}

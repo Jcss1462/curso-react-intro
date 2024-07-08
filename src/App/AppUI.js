@@ -10,6 +10,7 @@ import { TodosError } from '../components/TodosError/TodosError';
 import { EmptyTodos } from '../components/EmptyTodos/EmptyTodos';
 import { TodoContext } from '../shared/contexts/TodoContext';
 import React from 'react';
+import { Modal } from '../components/Modal/Modal';
 
 function AppUI() {
 
@@ -21,7 +22,10 @@ function AppUI() {
         competeTodo,
         deletTodo,
         loading,
-        error } = React.useContext(TodoContext);
+        error,
+        openModal } = React.useContext(TodoContext);
+
+        
 
     return (
         <div id="app">
@@ -45,6 +49,11 @@ function AppUI() {
 
             <PopUpComplete completedTodos={completedTodos} totalTodos={totalTodos} loading={loading}></PopUpComplete>
 
+            {openModal && (
+                <Modal>
+                    La funcion de agregar TODO
+                </Modal>
+            )}
 
         </div>
     );

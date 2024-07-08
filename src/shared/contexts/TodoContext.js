@@ -17,6 +17,10 @@ function TodoProvider({ children }) {
     const [searchValue, setSearchValue] = React.useState("");
     const completedTodos = toDos.filter((prev) => prev.completed === true).length;
     const totalTodos = toDos.length;
+    
+    const [openModal, setOpenModal] = React.useState(false);
+
+    console.log(openModal);
 
 
     const competeTodo = (index) => {
@@ -42,7 +46,9 @@ function TodoProvider({ children }) {
             competeTodo,
             deletTodo,
             loading,
-            error
+            error,
+            openModal, 
+            setOpenModal
         }} >
             {children}
         </ TodoContext.Provider>

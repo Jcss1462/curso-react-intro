@@ -9,43 +9,43 @@ import { TodosLoading } from '../components/TodosLoading/TodosLoading';
 import { TodosError } from '../components/TodosError/TodosError';
 import { EmptyTodos } from '../components/EmptyTodos/EmptyTodos';
 import { TodoContext } from '../shared/contexts/TodoContext';
+import React from 'react';
 
 function AppUI() {
 
+    const { completedTodos,
+        totalTodos,
+        searchValue,
+        setSearchValue,
+        toDos,
+        competeTodo,
+        deletTodo,
+        loading,
+        error } = React.useContext(TodoContext);
+
     return (
         <div id="app">
-            <TodoContext.Consumer>
-                {({ completedTodos,
-                    totalTodos,
-                    searchValue,
-                    setSearchValue,
-                    toDos,
-                    competeTodo,
-                    deletTodo,
-                    loading,
-                    error }) => (
-                    <>
-                        <TodoCounter completed={completedTodos} total={totalTodos}></TodoCounter>
-                        <TodoSearch
-                            searchValue={searchValue}
-                            setSearchValue={setSearchValue}
-                        ></TodoSearch>
 
-                        <TodoList>
-                            {loading && <TodosLoading />}
-                            {error && <TodosError />}
-                            {(!loading && totalTodos === 0) && <EmptyTodos />}
-                            {toDos.map((todo, index) =>
-                                todo.text.toLowerCase().includes(searchValue.toLowerCase()) ? (<TodoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={() => competeTodo(index)} onDelete={() => deletTodo(index)}></TodoItem>) : ""
-                            )}
-                        </TodoList>
-                        <CreateTodoButton></CreateTodoButton>
+            <TodoCounter></TodoCounter>
 
-                        <PopUpComplete completedTodos={completedTodos} totalTodos={totalTodos} loading={loading}></PopUpComplete>
-                    </>
+            <TodoSearch
+                searchValue={searchValue}
+                setSearchValue={setSearchValue}
+            ></TodoSearch>
+
+            <TodoList>
+                {loading && <TodosLoading />}
+                {error && <TodosError />}
+                {(!loading && totalTodos === 0) && <EmptyTodos />}
+                {toDos.map((todo, index) =>
+                    todo.text.toLowerCase().includes(searchValue.toLowerCase()) ? (<TodoItem key={todo.text} text={todo.text} completed={todo.completed} onComplete={() => competeTodo(index)} onDelete={() => deletTodo(index)}></TodoItem>) : ""
                 )}
+            </TodoList>
+            <CreateTodoButton></CreateTodoButton>
 
-            </TodoContext.Consumer>
+            <PopUpComplete completedTodos={completedTodos} totalTodos={totalTodos} loading={loading}></PopUpComplete>
+
+
         </div>
     );
 

@@ -23,6 +23,13 @@ function TodoProvider({ children }) {
     console.log(openModal);
 
 
+    const addTodo = (text) => {
+        const newTodo = [...toDos,{text:text,competeTodo:false}];
+        saveItem(newTodo)
+    }
+
+
+
     const competeTodo = (index) => {
         const newTodo = [...toDos];
         newTodo[index].completed = !newTodo[index].completed;
@@ -48,7 +55,8 @@ function TodoProvider({ children }) {
             loading,
             error,
             openModal, 
-            setOpenModal
+            setOpenModal,
+            addTodo
         }} >
             {children}
         </ TodoContext.Provider>

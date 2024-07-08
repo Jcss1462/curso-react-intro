@@ -4,11 +4,13 @@ import { TodoContext } from "../../shared/contexts/TodoContext";
 
 function CreateTodoForm() {
 
-    const { setOpenModal} = React.useContext(TodoContext);
+    const { setOpenModal,addTodo} = React.useContext(TodoContext);
+    const [newTodoValue, setNewTodoValue] = React.useState("");
 
     function saveTodo(event){
         event.preventDefault();
-        //saveItem({ text: "cortar cebolla", completed: true });
+        addTodo(newTodoValue);
+        setOpenModal(false);
     }
 
     return (
@@ -23,7 +25,10 @@ function CreateTodoForm() {
                         <label><b>Escribe tu nuevo TODO</b></label>
                      
                         <textarea
-                            placeholder="Escribe nuevo Todo" />
+                            required
+                            placeholder="Escribe nuevo Todo" 
+                            value={newTodoValue}
+                            onChange={(event)=>{setNewTodoValue(event.target.value)}}/>
 
                         <button  trype="submit" className="guardarTodoButton">
                             <b>Guardar</b>

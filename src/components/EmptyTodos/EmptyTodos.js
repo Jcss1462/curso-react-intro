@@ -1,6 +1,6 @@
 
 function EmptyTodos(){
-    return <p>Creo tu primer...</p>;
+    return <p>Crea tu primer TODO</p>;
 };
 
 export { EmptyTodos }

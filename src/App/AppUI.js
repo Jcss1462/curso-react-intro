@@ -11,6 +11,7 @@ import { EmptyTodos } from '../components/EmptyTodos/EmptyTodos';
 import { TodoContext } from '../shared/contexts/TodoContext';
 import React from 'react';
 import { Modal } from '../components/Modal/Modal';
+import { CreateTodoForm } from '../components/CreateTodoForm/CreateTodoForm';
 
 function AppUI() {
 
@@ -51,7 +52,7 @@ function AppUI() {
 
             {openModal && (
                 <Modal>
-                    La funcion de agregar TODO
+                    <CreateTodoForm/>
                 </Modal>
             )}
 

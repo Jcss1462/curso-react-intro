@@ -7,7 +7,7 @@ function CreateTodoButton() {
 
     return (
         <div id="buttonContainer">
-            <button onClick={()=>{
+            <button id="createTodoButton" onClick={()=>{
                 setOpenModal(true);
             }}><b>Create</b></button>
         </div>
